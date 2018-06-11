@@ -543,9 +543,10 @@ int format_counters(struct thread_data *t, struct core_data *c,
  	 * If measurement interval exceeds minimum RAPL Joule Counter range,
  	 * indicate that results are suspect by printing "**" in fraction place.
  	 */
-	if (interval_float < rapl_joule_counter_range)
-		fmt8 = "%8.2f";
-	else
+	if (interval_float < rapl_joule_counter_range) {
+		fmt8 = " %8.9f "; //added by Weiwei Jia
+		//fmt8 = "%8.2f";
+	} else
 		fmt8 = " %6.0f**";
 
 	if (do_rapl && !rapl_joules) {
